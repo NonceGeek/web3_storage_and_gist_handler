@@ -8,13 +8,16 @@ defmodule Web3StorageAndGistCmdTool.GistHandler do
   @prefix "https://api.github.com/gists"
 
 
+  def build_header(), do: [{"Authorization", "Bearer #{Constants.get_constant(:github_token)}"}]
   def create_gist(payload) do
-    headers = [{"Authorization", "Bearer #{Constants.get_constant(:github_token)}"}]
+    headers = build_header()
     Http.http_post(@prefix, payload, headers)
   end
 
-  def update_gist(new_payload) do
-
+  def update_gist(gist_id, new_payload) do
+    url = "#{@prefix}/#{gist_id}"
+    headers = build_header()
+    Http.http_post(url, new_payload, headers)
   end
 
   @doc """
@@ -47,20 +50,25 @@ defmodule Web3StorageAndGistCmdTool.GistHandler do
       owner: %{
         login: user_name,
         id: github_id
-      }
+      },
+      public: if_public,
+      description: description
     } =
       ExStructTranslator.to_atom_struct(payload)
 
     %{
+      gist_id: gist_id,
       files: handle_files_type(files),
       owner: %{
         login: user_name,
         id: github_id
-      }
+      },
+      public: if_public,
+      description: description
     }
   end
 
-  defp do_get_from_gist(gist_id) do
+  def do_get_from_gist(gist_id) do
     Logger.info("get from gist: #{@prefix}/#{gist_id}")
     Http.http_get("#{@prefix}/#{gist_id}")
   end
