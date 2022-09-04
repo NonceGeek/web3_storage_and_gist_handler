@@ -10,7 +10,7 @@ defmodule Web3StorageAndGistCmdTool.CLI do
     # Logger.info("args: #{inspect(args)}")
     {opts, argv, _} =
       OptionParser.parse(args,
-        strict: [gist: :string, to: :string, genconf: :string, updategist: :boolean],)
+        strict: [gist: :string, to: :string, genconf: :string, updategist: :boolean, help: :boolean],)
     Logger.info("opts: #{inspect(opts)}")
     Logger.info("argv: #{inspect(argv)}")
     handle_args(opts, argv)
@@ -67,9 +67,9 @@ defmodule Web3StorageAndGistCmdTool.CLI do
     "
   end
 
-  def handle_args([], ["help"]) do
-    "send gist to IPFS:\n./web3_storage_and_gist_cmd_tool --gist [gist_id] --to ipfs --updategist [true or false]\n"
-    |> Kernel.<>("send gist to ARWEAVE: \n./web3_storage_and_gist_cmd_tool --gist [gist_id] --to ar --updategist [true or false]\n")
+  def handle_args([help: true], []) do
+    "send gist to IPFS:\n./web3_storage_and_gist_cmd_tool --gist [gist_id] --to ipfs --updategist\n"
+    |> Kernel.<>("send gist to ARWEAVE: \n./web3_storage_and_gist_cmd_tool --gist [gist_id] --to ar --updategist\n")
     |> Kernel.<>("generate config:\n ./web3_storage_and_gist_cmd_tool --genconf []")
     |> IO.puts()
   end
