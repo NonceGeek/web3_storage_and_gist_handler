@@ -25,4 +25,3 @@ web3_storage_and_gist_cmd_tool-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 .envrc
-web3_storage_and_gist_cmd_tool

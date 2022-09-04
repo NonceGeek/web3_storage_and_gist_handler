@@ -8,6 +8,9 @@ defmodule Web3StorageAndGistCmdTool.GistHandler do
   @prefix "https://api.github.com/gists"
 
 
+  def build_url(username, gist_id) do
+    "https://gist.github.com/#{username}/#{gist_id}"
+  end
   def build_header(), do: [{"Authorization", "Bearer #{Constants.get_constant(:github_token)}"}]
   def create_gist(payload) do
     headers = build_header()

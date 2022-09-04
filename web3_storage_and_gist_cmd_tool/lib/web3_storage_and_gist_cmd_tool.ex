@@ -18,17 +18,20 @@ defmodule Web3StorageAndGistCmdTool.CLI do
 
   def handle_args([gist: gist_id, to: "ipfs" = to, updategist: true], []) do
     try do
+
+    %{owner: %{login: username}} = payload = GistHandler.get_gist(gist_id)
+
       {:ok,
       %{
         "Hash" => hash
     }} =
-      gist_to_ipfs(gist_id)
+      gist_to_ipfs(payload)
 
     io_puts_upload_info(to, hash)
     {:ok, _payload} =
       update_gist(to, gist_id, hash)
 
-    IO.puts "gist #{gist_id} has updated already."
+    IO.puts "gist #{gist_id} is updated! view on #{GistHandler.build_url(username, gist_id)}"
     rescue
       error ->
         IO.puts "meet error: #{inspect(error)}"
@@ -91,9 +94,8 @@ defmodule Web3StorageAndGistCmdTool.CLI do
     IO.puts "the Gist is upload to #{ar_of_ipfs} already!Hash is: #{hash}"
   end
 
-  def gist_to_ipfs(gist_id) do
-    gist_id
-    |> GistHandler.get_gist()
+  def gist_to_ipfs(payload) do
+    payload
     |> Poison.encode!()
     |> IpfsHandler.put_data()
   end
