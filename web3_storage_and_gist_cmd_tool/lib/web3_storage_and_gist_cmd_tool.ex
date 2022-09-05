@@ -108,6 +108,7 @@ defmodule Web3StorageAndGistCmdTool.CLI do
     |> Kernel.<>("send gist to ARWEAVE: \n./web3_storage_and_gist_cmd_tool --gist [gist_id] --to ar --updategist\n")
     |> Kernel.<>("------\n")
     |> Kernel.<>("file to gist:\n ./web3_storage_and_gist_cmd_tool --folder [path] --des [description] --public\n")
+    |> Kernel.<>("file to gist:\n ./web3_storage_and_gist_cmd_tool --gist [gist_id] --folder [path] --des [description] --public\n")
     |> Kernel.<>("------\n")
     |> Kernel.<>("generate config:\n ./web3_storage_and_gist_cmd_tool --genconf \"ipfs_read_node pfs_write_node ipfs_project_id ipfs_api_key_secret github_token\"")
     |> IO.puts()
