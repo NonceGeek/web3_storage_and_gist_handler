@@ -1,7 +1,7 @@
 # web3_storage_and_gist_handler
 Gist data &lt;=> Web3 Storages(IPFS/Arweave)
 
-## Using Guide
+## 0x01) Using Guide
 
 0x01) Gen Conf
 
@@ -23,3 +23,7 @@ send gist to ARWEAVE:
 ./web3_storage_and_gist_cmd_tool --folder [path] --des [description] --public
 ./web3_storage_and_gist_cmd_tool --gist [gist_id] --folder [path] --des [description] --public
 ```
+
+## 0x02) Articles abount Gist using in Web3
+
+* [dApp 使用存储指南之 Gist](https://mp.weixin.qq.com/s/wGkPsU-T0CHPcTbKiGDzLw)
