@@ -5,7 +5,9 @@ defmodule Web3StorageAndGistCmdTool.CLI do
   alias Web3StorageAndGistCmdTool.GistHandler
   alias Web3StorageAndGistCmdTool.IpfsHandler
   require Logger
+  use Bakeware.Script
 
+  @impl Bakeware.Script
   def main(args) do
     # Logger.info("args: #{inspect(args)}")
     {opts, argv, _} =
