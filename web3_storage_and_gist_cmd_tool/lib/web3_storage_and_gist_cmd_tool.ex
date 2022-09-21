@@ -5,9 +5,9 @@ defmodule Web3StorageAndGistCmdTool.CLI do
   alias Web3StorageAndGistCmdTool.GistHandler
   alias Web3StorageAndGistCmdTool.IpfsHandler
   require Logger
-  use Bakeware.Script
+  # use Bakeware.Script
 
-  @impl Bakeware.Script
+  # @impl Bakeware.Script
   def main(args) do
     # Logger.info("args: #{inspect(args)}")
     {opts, argv, _} =
@@ -56,7 +56,6 @@ defmodule Web3StorageAndGistCmdTool.CLI do
 
   def handle_args([gist: gist_id, to: "ipfs" = to, updategist: true], []) do
     try do
-
     %{owner: %{login: username}} = payload = GistHandler.get_gist(gist_id)
 
       {:ok,
