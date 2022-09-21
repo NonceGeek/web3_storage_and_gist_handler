@@ -115,6 +115,9 @@ defmodule Web3StorageAndGistCmdTool.CLI do
     |> IO.puts()
   end
 
+  def handle_args([], []) do
+    IO.puts("please ano the things about bakeware")
+  end
   def do_handle_args(folder_path, description, if_public) do
     {:ok, files_names} = File.ls(folder_path)
     # generate files
