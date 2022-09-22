@@ -5,9 +5,9 @@ defmodule Web3StorageAndGistCmdTool.CLI do
   alias Web3StorageAndGistCmdTool.GistHandler
   alias Web3StorageAndGistCmdTool.IpfsHandler
   require Logger
-  # use Bakeware.Script
+  use Bakeware.Script
 
-  # @impl Bakeware.Script
+  @impl Bakeware.Script
   def main(args) do
     # Logger.info("args: #{inspect(args)}")
     {opts, argv, _} =
@@ -84,7 +84,7 @@ defmodule Web3StorageAndGistCmdTool.CLI do
       %{
         "Hash" => hash
     }} =
-      gist_to_ipfs(gist_id)
+      gist_to_ipfs_by_gist_id(gist_id)
     io_puts_upload_info(to, hash)
   end
 
@@ -163,6 +163,11 @@ defmodule Web3StorageAndGistCmdTool.CLI do
   @spec io_puts_upload_info(any, any) :: :ok
   def io_puts_upload_info(ar_of_ipfs, hash) do
     IO.puts "the Gist is upload to #{ar_of_ipfs} already!Hash is: #{hash}"
+  end
+
+  def gist_to_ipfs_by_gist_id(gist_id) do
+    payload = GistHandler.get_gist(gist_id)
+    gist_to_ipfs(payload)
   end
 
   def gist_to_ipfs(payload) do

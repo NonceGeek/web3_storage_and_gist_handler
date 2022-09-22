@@ -104,13 +104,9 @@ defmodule Web3StorageAndGistCmdTool.GistHandler do
   end
 
   def handle_file_type(file_name, %{content: content} = payload) do
-    [_file_name_pure, type] =
-      file_name
-      |> Atom.to_string()
-      |> String.split(".")
 
     content_handled =
-      if type == "json" do
+      if String.ends_with?( Atom.to_string(file_name), "json") do
         content
         |> Poison.decode!()
         |> ExStructTranslator.to_atom_struct()
