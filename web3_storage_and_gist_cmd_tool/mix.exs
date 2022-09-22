@@ -30,7 +30,7 @@ defmodule Web3StorageAndGistCmdTool.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      # mod: {Web3StorageAndGistCmdTool.CLI, []}
+      mod: {Web3StorageAndGistCmdTool.CLI, []}
     ]
   end
 
